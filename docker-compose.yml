@@ -1,0 +1,29 @@
+version: '2'
+services:
+  server:
+    image: yogendrasinghrathore/serverscript:1.0
+    networks:
+      MyNet:
+        ipv4_address: 10.11.0.2
+    volumes:
+      - servervol:/serverdata
+    tty: true
+
+  client:
+    image: yogendrasinghrathore/clientscript:1.0
+    networks:
+      MyNet:
+        ipv4_address: 10.11.0.3
+    volumes:
+      - clientvol:/clientdata
+    tty: true
+
+
+volumes:
+  clientvol:
+  servervol:
+
+networks:
+  MyNet:
+    external: true
+
