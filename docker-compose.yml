@@ -17,7 +17,10 @@ services:
     volumes:
       - clientvol:/clientdata
     tty: true
-
+    environment:
+      - SSH_CLIENT=10.11.0.2
+      - SSH_CONNECTION=10.11.0.2 10.11.0.3
+      - USER=root
 
 volumes:
   clientvol:
@@ -25,5 +28,9 @@ volumes:
 
 networks:
   MyNet:
-    external: true
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "10.11.0.0/31"
 
